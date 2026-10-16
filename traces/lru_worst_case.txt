@@ -1,0 +1,2 @@
+# Cyclic loop of 5 pages: with 4 frames LRU and FIFO fault on EVERY reference
+0 1 2 3 4 0 1 2 3 4 0 1 2 3 4 0 1 2 3 4 0 1 2 3 4

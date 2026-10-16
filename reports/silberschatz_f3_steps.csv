@@ -1,0 +1,221 @@
+algorithm,t,page,op,result,fault_kind,frame,victim,victim_dirty,frames,reason
+FIFO,0,7,R,FAULT,compulsory,0,,0,7 - -,free frame 0 available
+FIFO,1,0,R,FAULT,compulsory,1,,0,7 0 -,free frame 1 available
+FIFO,2,1,R,FAULT,compulsory,2,,0,7 0 1,free frame 2 available
+FIFO,3,2,R,FAULT,compulsory,0,7,0,2 0 1,evict page 7 from frame 0: oldest resident page (loaded at t=0)
+FIFO,4,0,R,HIT,,1,,0,2 0 1,page 0 already resident in frame 1
+FIFO,5,3,R,FAULT,compulsory,1,0,0,2 3 1,evict page 0 from frame 1: oldest resident page (loaded at t=1)
+FIFO,6,0,R,FAULT,capacity,2,1,0,2 3 0,evict page 1 from frame 2: oldest resident page (loaded at t=2)
+FIFO,7,4,R,FAULT,compulsory,0,2,0,4 3 0,evict page 2 from frame 0: oldest resident page (loaded at t=3)
+FIFO,8,2,R,FAULT,capacity,1,3,0,4 2 0,evict page 3 from frame 1: oldest resident page (loaded at t=5)
+FIFO,9,3,R,FAULT,capacity,2,0,0,4 2 3,evict page 0 from frame 2: oldest resident page (loaded at t=6)
+FIFO,10,0,R,FAULT,capacity,0,4,0,0 2 3,evict page 4 from frame 0: oldest resident page (loaded at t=7)
+FIFO,11,3,R,HIT,,2,,0,0 2 3,page 3 already resident in frame 2
+FIFO,12,2,R,HIT,,1,,0,0 2 3,page 2 already resident in frame 1
+FIFO,13,1,R,FAULT,capacity,1,2,0,0 1 3,evict page 2 from frame 1: oldest resident page (loaded at t=8)
+FIFO,14,2,R,FAULT,capacity,2,3,0,0 1 2,evict page 3 from frame 2: oldest resident page (loaded at t=9)
+FIFO,15,0,R,HIT,,0,,0,0 1 2,page 0 already resident in frame 0
+FIFO,16,1,R,HIT,,1,,0,0 1 2,page 1 already resident in frame 1
+FIFO,17,7,R,FAULT,capacity,0,0,0,7 1 2,evict page 0 from frame 0: oldest resident page (loaded at t=10)
+FIFO,18,0,R,FAULT,capacity,1,1,0,7 0 2,evict page 1 from frame 1: oldest resident page (loaded at t=13)
+FIFO,19,1,R,FAULT,capacity,2,2,0,7 0 1,evict page 2 from frame 2: oldest resident page (loaded at t=14)
+LRU,0,7,R,FAULT,compulsory,0,,0,7 - -,free frame 0 available
+LRU,1,0,R,FAULT,compulsory,1,,0,7 0 -,free frame 1 available
+LRU,2,1,R,FAULT,compulsory,2,,0,7 0 1,free frame 2 available
+LRU,3,2,R,FAULT,compulsory,0,7,0,2 0 1,evict page 7 from frame 0: least recently used (last referenced at t=0)
+LRU,4,0,R,HIT,,1,,0,2 0 1,page 0 already resident in frame 1
+LRU,5,3,R,FAULT,compulsory,2,1,0,2 0 3,evict page 1 from frame 2: least recently used (last referenced at t=2)
+LRU,6,0,R,HIT,,1,,0,2 0 3,page 0 already resident in frame 1
+LRU,7,4,R,FAULT,compulsory,0,2,0,4 0 3,evict page 2 from frame 0: least recently used (last referenced at t=3)
+LRU,8,2,R,FAULT,capacity,2,3,0,4 0 2,evict page 3 from frame 2: least recently used (last referenced at t=5)
+LRU,9,3,R,FAULT,capacity,1,0,0,4 3 2,evict page 0 from frame 1: least recently used (last referenced at t=6)
+LRU,10,0,R,FAULT,capacity,0,4,0,0 3 2,evict page 4 from frame 0: least recently used (last referenced at t=7)
+LRU,11,3,R,HIT,,1,,0,0 3 2,page 3 already resident in frame 1
+LRU,12,2,R,HIT,,2,,0,0 3 2,page 2 already resident in frame 2
+LRU,13,1,R,FAULT,capacity,0,0,0,1 3 2,evict page 0 from frame 0: least recently used (last referenced at t=10)
+LRU,14,2,R,HIT,,2,,0,1 3 2,page 2 already resident in frame 2
+LRU,15,0,R,FAULT,capacity,1,3,0,1 0 2,evict page 3 from frame 1: least recently used (last referenced at t=11)
+LRU,16,1,R,HIT,,0,,0,1 0 2,page 1 already resident in frame 0
+LRU,17,7,R,FAULT,capacity,2,2,0,1 0 7,evict page 2 from frame 2: least recently used (last referenced at t=14)
+LRU,18,0,R,HIT,,1,,0,1 0 7,page 0 already resident in frame 1
+LRU,19,1,R,HIT,,0,,0,1 0 7,page 1 already resident in frame 0
+OPT,0,7,R,FAULT,compulsory,0,,0,7 - -,free frame 0 available
+OPT,1,0,R,FAULT,compulsory,1,,0,7 0 -,free frame 1 available
+OPT,2,1,R,FAULT,compulsory,2,,0,7 0 1,free frame 2 available
+OPT,3,2,R,FAULT,compulsory,0,7,0,2 0 1,evict page 7 from frame 0: next use farthest in the future (t=17)
+OPT,4,0,R,HIT,,1,,0,2 0 1,page 0 already resident in frame 1
+OPT,5,3,R,FAULT,compulsory,2,1,0,2 0 3,evict page 1 from frame 2: next use farthest in the future (t=13)
+OPT,6,0,R,HIT,,1,,0,2 0 3,page 0 already resident in frame 1
+OPT,7,4,R,FAULT,compulsory,1,0,0,2 4 3,evict page 0 from frame 1: next use farthest in the future (t=10)
+OPT,8,2,R,HIT,,0,,0,2 4 3,page 2 already resident in frame 0
+OPT,9,3,R,HIT,,2,,0,2 4 3,page 3 already resident in frame 2
+OPT,10,0,R,FAULT,capacity,1,4,0,2 0 3,evict page 4 from frame 1: never referenced again
+OPT,11,3,R,HIT,,2,,0,2 0 3,page 3 already resident in frame 2
+OPT,12,2,R,HIT,,0,,0,2 0 3,page 2 already resident in frame 0
+OPT,13,1,R,FAULT,capacity,2,3,0,2 0 1,evict page 3 from frame 2: never referenced again
+OPT,14,2,R,HIT,,0,,0,2 0 1,page 2 already resident in frame 0
+OPT,15,0,R,HIT,,1,,0,2 0 1,page 0 already resident in frame 1
+OPT,16,1,R,HIT,,2,,0,2 0 1,page 1 already resident in frame 2
+OPT,17,7,R,FAULT,capacity,0,2,0,7 0 1,evict page 2 from frame 0: never referenced again
+OPT,18,0,R,HIT,,1,,0,7 0 1,page 0 already resident in frame 1
+OPT,19,1,R,HIT,,2,,0,7 0 1,page 1 already resident in frame 2
+CLOCK,0,7,R,FAULT,compulsory,0,,0,7 - -,free frame 0 available
+CLOCK,1,0,R,FAULT,compulsory,1,,0,7 0 -,free frame 1 available
+CLOCK,2,1,R,FAULT,compulsory,2,,0,7 0 1,free frame 2 available
+CLOCK,3,2,R,FAULT,compulsory,0,7,0,2 0 1,"evict page 7 from frame 0: clock hand found R=0 after giving a second chance to {7,0,1}"
+CLOCK,4,0,R,HIT,,1,,0,2 0 1,page 0 already resident in frame 1
+CLOCK,5,3,R,FAULT,compulsory,2,1,0,2 0 3,evict page 1 from frame 2: clock hand found R=0 after giving a second chance to {0}
+CLOCK,6,0,R,HIT,,1,,0,2 0 3,page 0 already resident in frame 1
+CLOCK,7,4,R,FAULT,compulsory,0,2,0,4 0 3,"evict page 2 from frame 0: clock hand found R=0 after giving a second chance to {2,0,3}"
+CLOCK,8,2,R,FAULT,capacity,1,0,0,4 2 3,evict page 0 from frame 1: clock hand found R=0
+CLOCK,9,3,R,HIT,,2,,0,4 2 3,page 3 already resident in frame 2
+CLOCK,10,0,R,FAULT,capacity,2,3,0,4 2 0,"evict page 3 from frame 2: clock hand found R=0 after giving a second chance to {3,4,2}"
+CLOCK,11,3,R,FAULT,capacity,0,4,0,3 2 0,evict page 4 from frame 0: clock hand found R=0
+CLOCK,12,2,R,HIT,,1,,0,3 2 0,page 2 already resident in frame 1
+CLOCK,13,1,R,FAULT,capacity,1,2,0,3 1 0,"evict page 2 from frame 1: clock hand found R=0 after giving a second chance to {2,0,3}"
+CLOCK,14,2,R,FAULT,capacity,2,0,0,3 1 2,evict page 0 from frame 2: clock hand found R=0
+CLOCK,15,0,R,FAULT,capacity,0,3,0,0 1 2,evict page 3 from frame 0: clock hand found R=0
+CLOCK,16,1,R,HIT,,1,,0,0 1 2,page 1 already resident in frame 1
+CLOCK,17,7,R,FAULT,capacity,1,1,0,0 7 2,"evict page 1 from frame 1: clock hand found R=0 after giving a second chance to {1,2,0}"
+CLOCK,18,0,R,HIT,,0,,0,0 7 2,page 0 already resident in frame 0
+CLOCK,19,1,R,FAULT,capacity,2,2,0,0 7 1,evict page 2 from frame 2: clock hand found R=0
+ESC,0,7,R,FAULT,compulsory,0,,0,7 - -,free frame 0 available
+ESC,1,0,R,FAULT,compulsory,1,,0,7 0 -,free frame 1 available
+ESC,2,1,R,FAULT,compulsory,2,,0,7 0 1,free frame 2 available
+ESC,3,2,R,FAULT,compulsory,0,7,0,2 0 1,"evict page 7 from frame 0: class (R=0,M=0): not recently used and clean"
+ESC,4,0,R,HIT,,1,,0,2 0 1,page 0 already resident in frame 1
+ESC,5,3,R,FAULT,compulsory,2,1,0,2 0 3,"evict page 1 from frame 2: class (R=0,M=0): not recently used and clean"
+ESC,6,0,R,HIT,,1,,0,2 0 3,page 0 already resident in frame 1
+ESC,7,4,R,FAULT,compulsory,0,2,0,4 0 3,"evict page 2 from frame 0: class (R=0,M=0): not recently used and clean"
+ESC,8,2,R,FAULT,capacity,1,0,0,4 2 3,"evict page 0 from frame 1: class (R=0,M=0): not recently used and clean"
+ESC,9,3,R,HIT,,2,,0,4 2 3,page 3 already resident in frame 2
+ESC,10,0,R,FAULT,capacity,2,3,0,4 2 0,"evict page 3 from frame 2: class (R=0,M=0): not recently used and clean"
+ESC,11,3,R,FAULT,capacity,0,4,0,3 2 0,"evict page 4 from frame 0: class (R=0,M=0): not recently used and clean"
+ESC,12,2,R,HIT,,1,,0,3 2 0,page 2 already resident in frame 1
+ESC,13,1,R,FAULT,capacity,1,2,0,3 1 0,"evict page 2 from frame 1: class (R=0,M=0): not recently used and clean"
+ESC,14,2,R,FAULT,capacity,2,0,0,3 1 2,"evict page 0 from frame 2: class (R=0,M=0): not recently used and clean"
+ESC,15,0,R,FAULT,capacity,0,3,0,0 1 2,"evict page 3 from frame 0: class (R=0,M=0): not recently used and clean"
+ESC,16,1,R,HIT,,1,,0,0 1 2,page 1 already resident in frame 1
+ESC,17,7,R,FAULT,capacity,1,1,0,0 7 2,"evict page 1 from frame 1: class (R=0,M=0): not recently used and clean"
+ESC,18,0,R,HIT,,0,,0,0 7 2,page 0 already resident in frame 0
+ESC,19,1,R,FAULT,capacity,2,2,0,0 7 1,"evict page 2 from frame 2: class (R=0,M=0): not recently used and clean"
+NRU,0,7,R,FAULT,compulsory,0,,0,7 - -,free frame 0 available
+NRU,1,0,R,FAULT,compulsory,1,,0,7 0 -,free frame 1 available
+NRU,2,1,R,FAULT,compulsory,2,,0,7 0 1,free frame 2 available
+NRU,3,2,R,FAULT,compulsory,0,7,0,2 0 1,"evict page 7 from frame 0: lowest NRU class 2 (R=1,M=0), oldest among 3 candidate(s)"
+NRU,4,0,R,HIT,,1,,0,2 0 1,page 0 already resident in frame 1
+NRU,5,3,R,FAULT,compulsory,1,0,0,2 3 1,"evict page 0 from frame 1: lowest NRU class 2 (R=1,M=0), oldest among 3 candidate(s)"
+NRU,6,0,R,FAULT,capacity,2,1,0,2 3 0,"evict page 1 from frame 2: lowest NRU class 2 (R=1,M=0), oldest among 3 candidate(s)"
+NRU,7,4,R,FAULT,compulsory,0,2,0,4 3 0,"evict page 2 from frame 0: lowest NRU class 2 (R=1,M=0), oldest among 3 candidate(s)"
+NRU,8,2,R,FAULT,capacity,1,3,0,4 2 0,"evict page 3 from frame 1: lowest NRU class 0 (R=0,M=0), oldest among 3 candidate(s)"
+NRU,9,3,R,FAULT,capacity,2,0,0,4 2 3,"evict page 0 from frame 2: lowest NRU class 0 (R=0,M=0), oldest among 2 candidate(s)"
+NRU,10,0,R,FAULT,capacity,0,4,0,0 2 3,"evict page 4 from frame 0: lowest NRU class 0 (R=0,M=0), oldest among 1 candidate(s)"
+NRU,11,3,R,HIT,,2,,0,0 2 3,page 3 already resident in frame 2
+NRU,12,2,R,HIT,,1,,0,0 2 3,page 2 already resident in frame 1
+NRU,13,1,R,FAULT,capacity,1,2,0,0 1 3,"evict page 2 from frame 1: lowest NRU class 2 (R=1,M=0), oldest among 3 candidate(s)"
+NRU,14,2,R,FAULT,capacity,2,3,0,0 1 2,"evict page 3 from frame 2: lowest NRU class 2 (R=1,M=0), oldest among 3 candidate(s)"
+NRU,15,0,R,HIT,,0,,0,0 1 2,page 0 already resident in frame 0
+NRU,16,1,R,HIT,,1,,0,0 1 2,page 1 already resident in frame 1
+NRU,17,7,R,FAULT,capacity,0,0,0,7 1 2,"evict page 0 from frame 0: lowest NRU class 0 (R=0,M=0), oldest among 2 candidate(s)"
+NRU,18,0,R,FAULT,capacity,2,2,0,7 1 0,"evict page 2 from frame 2: lowest NRU class 0 (R=0,M=0), oldest among 1 candidate(s)"
+NRU,19,1,R,HIT,,1,,0,7 1 0,page 1 already resident in frame 1
+AGING,0,7,R,FAULT,compulsory,0,,0,7 - -,free frame 0 available
+AGING,1,0,R,FAULT,compulsory,1,,0,7 0 -,free frame 1 available
+AGING,2,1,R,FAULT,compulsory,2,,0,7 0 1,free frame 2 available
+AGING,3,2,R,FAULT,compulsory,0,7,0,2 0 1,evict page 7 from frame 0: smallest aging counter 00100000
+AGING,4,0,R,HIT,,1,,0,2 0 1,page 0 already resident in frame 1
+AGING,5,3,R,FAULT,compulsory,2,1,0,2 0 3,evict page 1 from frame 2: smallest aging counter 00100000
+AGING,6,0,R,HIT,,1,,0,2 0 3,page 0 already resident in frame 1
+AGING,7,4,R,FAULT,compulsory,0,2,0,4 0 3,evict page 2 from frame 0: smallest aging counter 00010000
+AGING,8,2,R,FAULT,capacity,2,3,0,4 0 2,evict page 3 from frame 2: smallest aging counter 00100000
+AGING,9,3,R,FAULT,capacity,1,0,0,4 3 2,evict page 0 from frame 1: smallest aging counter 00101001
+AGING,10,0,R,FAULT,capacity,0,4,0,0 3 2,evict page 4 from frame 0: smallest aging counter 00100000
+AGING,11,3,R,HIT,,1,,0,0 3 2,page 3 already resident in frame 1
+AGING,12,2,R,HIT,,2,,0,0 3 2,page 2 already resident in frame 2
+AGING,13,1,R,FAULT,capacity,0,0,0,1 3 2,evict page 0 from frame 0: smallest aging counter 00100000
+AGING,14,2,R,HIT,,2,,0,1 3 2,page 2 already resident in frame 2
+AGING,15,0,R,FAULT,capacity,1,3,0,1 0 2,evict page 3 from frame 1: smallest aging counter 00010100
+AGING,16,1,R,HIT,,0,,0,1 0 2,page 1 already resident in frame 0
+AGING,17,7,R,FAULT,capacity,2,2,0,1 0 7,evict page 2 from frame 2: smallest aging counter 00101000
+AGING,18,0,R,HIT,,1,,0,1 0 7,page 0 already resident in frame 1
+AGING,19,1,R,HIT,,0,,0,1 0 7,page 1 already resident in frame 0
+LFU,0,7,R,FAULT,compulsory,0,,0,7 - -,free frame 0 available
+LFU,1,0,R,FAULT,compulsory,1,,0,7 0 -,free frame 1 available
+LFU,2,1,R,FAULT,compulsory,2,,0,7 0 1,free frame 2 available
+LFU,3,2,R,FAULT,compulsory,0,7,0,2 0 1,evict page 7 from frame 0: lowest use count (1)
+LFU,4,0,R,HIT,,1,,0,2 0 1,page 0 already resident in frame 1
+LFU,5,3,R,FAULT,compulsory,2,1,0,2 0 3,evict page 1 from frame 2: lowest use count (1)
+LFU,6,0,R,HIT,,1,,0,2 0 3,page 0 already resident in frame 1
+LFU,7,4,R,FAULT,compulsory,0,2,0,4 0 3,evict page 2 from frame 0: lowest use count (1)
+LFU,8,2,R,FAULT,capacity,2,3,0,4 0 2,evict page 3 from frame 2: lowest use count (1)
+LFU,9,3,R,FAULT,capacity,0,4,0,3 0 2,evict page 4 from frame 0: lowest use count (1)
+LFU,10,0,R,HIT,,1,,0,3 0 2,page 0 already resident in frame 1
+LFU,11,3,R,HIT,,0,,0,3 0 2,page 3 already resident in frame 0
+LFU,12,2,R,HIT,,2,,0,3 0 2,page 2 already resident in frame 2
+LFU,13,1,R,FAULT,capacity,2,2,0,3 0 1,evict page 2 from frame 2: lowest use count (2)
+LFU,14,2,R,FAULT,capacity,2,1,0,3 0 2,evict page 1 from frame 2: lowest use count (1)
+LFU,15,0,R,HIT,,1,,0,3 0 2,page 0 already resident in frame 1
+LFU,16,1,R,FAULT,capacity,2,2,0,3 0 1,evict page 2 from frame 2: lowest use count (1)
+LFU,17,7,R,FAULT,capacity,2,1,0,3 0 7,evict page 1 from frame 2: lowest use count (1)
+LFU,18,0,R,HIT,,1,,0,3 0 7,page 0 already resident in frame 1
+LFU,19,1,R,FAULT,capacity,2,7,0,3 0 1,evict page 7 from frame 2: lowest use count (1)
+MFU,0,7,R,FAULT,compulsory,0,,0,7 - -,free frame 0 available
+MFU,1,0,R,FAULT,compulsory,1,,0,7 0 -,free frame 1 available
+MFU,2,1,R,FAULT,compulsory,2,,0,7 0 1,free frame 2 available
+MFU,3,2,R,FAULT,compulsory,0,7,0,2 0 1,evict page 7 from frame 0: highest use count (1)
+MFU,4,0,R,HIT,,1,,0,2 0 1,page 0 already resident in frame 1
+MFU,5,3,R,FAULT,compulsory,1,0,0,2 3 1,evict page 0 from frame 1: highest use count (2)
+MFU,6,0,R,FAULT,capacity,2,1,0,2 3 0,evict page 1 from frame 2: highest use count (1)
+MFU,7,4,R,FAULT,compulsory,0,2,0,4 3 0,evict page 2 from frame 0: highest use count (1)
+MFU,8,2,R,FAULT,capacity,1,3,0,4 2 0,evict page 3 from frame 1: highest use count (1)
+MFU,9,3,R,FAULT,capacity,2,0,0,4 2 3,evict page 0 from frame 2: highest use count (1)
+MFU,10,0,R,FAULT,capacity,0,4,0,0 2 3,evict page 4 from frame 0: highest use count (1)
+MFU,11,3,R,HIT,,2,,0,0 2 3,page 3 already resident in frame 2
+MFU,12,2,R,HIT,,1,,0,0 2 3,page 2 already resident in frame 1
+MFU,13,1,R,FAULT,capacity,1,2,0,0 1 3,evict page 2 from frame 1: highest use count (2)
+MFU,14,2,R,FAULT,capacity,2,3,0,0 1 2,evict page 3 from frame 2: highest use count (2)
+MFU,15,0,R,HIT,,0,,0,0 1 2,page 0 already resident in frame 0
+MFU,16,1,R,HIT,,1,,0,0 1 2,page 1 already resident in frame 1
+MFU,17,7,R,FAULT,capacity,0,0,0,7 1 2,evict page 0 from frame 0: highest use count (2)
+MFU,18,0,R,FAULT,capacity,1,1,0,7 0 2,evict page 1 from frame 1: highest use count (2)
+MFU,19,1,R,FAULT,capacity,2,2,0,7 0 1,evict page 2 from frame 2: highest use count (1)
+RANDOM,0,7,R,FAULT,compulsory,0,,0,7 - -,free frame 0 available
+RANDOM,1,0,R,FAULT,compulsory,1,,0,7 0 -,free frame 1 available
+RANDOM,2,1,R,FAULT,compulsory,2,,0,7 0 1,free frame 2 available
+RANDOM,3,2,R,FAULT,compulsory,1,0,0,7 2 1,evict page 0 from frame 1: chosen uniformly at random
+RANDOM,4,0,R,FAULT,capacity,2,1,0,7 2 0,evict page 1 from frame 2: chosen uniformly at random
+RANDOM,5,3,R,FAULT,compulsory,2,0,0,7 2 3,evict page 0 from frame 2: chosen uniformly at random
+RANDOM,6,0,R,FAULT,capacity,0,7,0,0 2 3,evict page 7 from frame 0: chosen uniformly at random
+RANDOM,7,4,R,FAULT,compulsory,2,3,0,0 2 4,evict page 3 from frame 2: chosen uniformly at random
+RANDOM,8,2,R,HIT,,1,,0,0 2 4,page 2 already resident in frame 1
+RANDOM,9,3,R,FAULT,capacity,2,4,0,0 2 3,evict page 4 from frame 2: chosen uniformly at random
+RANDOM,10,0,R,HIT,,0,,0,0 2 3,page 0 already resident in frame 0
+RANDOM,11,3,R,HIT,,2,,0,0 2 3,page 3 already resident in frame 2
+RANDOM,12,2,R,HIT,,1,,0,0 2 3,page 2 already resident in frame 1
+RANDOM,13,1,R,FAULT,capacity,1,2,0,0 1 3,evict page 2 from frame 1: chosen uniformly at random
+RANDOM,14,2,R,FAULT,capacity,1,1,0,0 2 3,evict page 1 from frame 1: chosen uniformly at random
+RANDOM,15,0,R,HIT,,0,,0,0 2 3,page 0 already resident in frame 0
+RANDOM,16,1,R,FAULT,capacity,0,0,0,1 2 3,evict page 0 from frame 0: chosen uniformly at random
+RANDOM,17,7,R,FAULT,capacity,1,2,0,1 7 3,evict page 2 from frame 1: chosen uniformly at random
+RANDOM,18,0,R,FAULT,capacity,0,1,0,0 7 3,evict page 1 from frame 0: chosen uniformly at random
+RANDOM,19,1,R,FAULT,capacity,0,0,0,1 7 3,evict page 0 from frame 0: chosen uniformly at random
+ARC,0,7,R,FAULT,compulsory,0,,0,7 - -,free frame 0 available
+ARC,1,0,R,FAULT,compulsory,1,,0,7 0 -,free frame 1 available
+ARC,2,1,R,FAULT,compulsory,2,,0,7 0 1,free frame 2 available
+ARC,3,2,R,FAULT,compulsory,0,7,0,2 0 1,evict page 7 from frame 0: T1 holds the whole cache: drop its LRU page without a ghost
+ARC,4,0,R,HIT,,1,,0,2 0 1,page 0 already resident in frame 1
+ARC,5,3,R,FAULT,compulsory,2,1,0,2 0 3,"evict page 1 from frame 2: LRU of T1 (recency list, |T1|=2 vs target p=0)"
+ARC,6,0,R,HIT,,1,,0,2 0 3,page 0 already resident in frame 1
+ARC,7,4,R,FAULT,compulsory,0,2,0,4 0 3,"evict page 2 from frame 0: LRU of T1 (recency list, |T1|=2 vs target p=0)"
+ARC,8,2,R,FAULT,capacity,2,3,0,4 0 2,"evict page 3 from frame 2: ghost hit in B1, p grows to 1; LRU of T1 (recency list, |T1|=2 vs target p=1)"
+ARC,9,3,R,FAULT,capacity,1,0,0,4 3 2,"evict page 0 from frame 1: ghost hit in B1, p grows to 2; LRU of T2 (frequency list, |T1|=1 within target p=2)"
+ARC,10,0,R,FAULT,capacity,0,4,0,0 3 2,"evict page 4 from frame 0: ghost hit in B2, p shrinks to 1; LRU of T1 (recency list, |T1|=1 vs target p=1)"
+ARC,11,3,R,HIT,,1,,0,0 3 2,page 3 already resident in frame 1
+ARC,12,2,R,HIT,,2,,0,0 3 2,page 2 already resident in frame 2
+ARC,13,1,R,FAULT,capacity,0,0,0,1 3 2,"evict page 0 from frame 0: LRU of T2 (frequency list, |T1|=0 within target p=1)"
+ARC,14,2,R,HIT,,2,,0,1 3 2,page 2 already resident in frame 2
+ARC,15,0,R,FAULT,capacity,0,1,0,0 3 2,"evict page 1 from frame 0: ghost hit in B2, p shrinks to 0; LRU of T1 (recency list, |T1|=1 vs target p=0)"
+ARC,16,1,R,FAULT,capacity,1,3,0,0 1 2,"evict page 3 from frame 1: ghost hit in B1, p grows to 1; LRU of T2 (frequency list, |T1|=0 within target p=1)"
+ARC,17,7,R,FAULT,capacity,2,2,0,0 1 7,"evict page 2 from frame 2: LRU of T2 (frequency list, |T1|=0 within target p=1)"
+ARC,18,0,R,HIT,,0,,0,0 1 7,page 0 already resident in frame 0
+ARC,19,1,R,HIT,,1,,0,0 1 7,page 1 already resident in frame 1

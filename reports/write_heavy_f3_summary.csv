@@ -1,0 +1,12 @@
+algorithm,name,frames,references,hits,faults,hit_ratio,fault_ratio,compulsory,capacity,evictions,write_backs,eat_ns,extra_vs_opt,runtime_us
+FIFO,First-In First-Out,3,25,7,18,0.2800,0.7200,7,11,15,8,8320100.00,4,1000.00
+LRU,Least Recently Used,3,25,2,23,0.0800,0.9200,7,16,20,8,9920100.00,9,0.00
+OPT,Optimal (Belady's MIN),3,25,11,14,0.4400,0.5600,7,7,11,7,6720100.00,0,0.00
+CLOCK,Second Chance (Clock),3,25,4,21,0.1600,0.8400,7,14,18,8,9280100.00,7,0.00
+ESC,"Enhanced Second Chance (R,M)",3,25,5,20,0.2000,0.8000,7,13,17,8,8960100.00,6,0.00
+NRU,Not Recently Used,3,25,7,18,0.2800,0.7200,7,11,15,5,7360100.00,4,0.00
+AGING,Aging (software LRU counters),3,25,2,23,0.0800,0.9200,7,16,20,8,9920100.00,9,1003.00
+LFU,Least Frequently Used,3,25,8,17,0.3200,0.6800,7,10,14,5,7040100.00,3,0.00
+MFU,Most Frequently Used,3,25,7,18,0.2800,0.7200,7,11,15,8,8320100.00,4,0.00
+RANDOM,Random Replacement,3,25,6,19,0.2400,0.7600,7,12,16,8,8640100.00,5,0.00
+ARC,Adaptive Replacement Cache,3,25,3,22,0.1200,0.8800,7,15,19,8,9600100.00,8,0.00

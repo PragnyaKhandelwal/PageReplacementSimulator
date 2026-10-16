@@ -1,0 +1,2 @@
+# Belady's anomaly: FIFO gives 9 faults with 3 frames but 10 faults with 4 frames
+1 2 3 4 1 2 5 1 2 3 4 5

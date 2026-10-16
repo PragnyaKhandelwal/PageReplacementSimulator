@@ -1,0 +1,276 @@
+algorithm,t,page,op,result,fault_kind,frame,victim,victim_dirty,frames,reason
+FIFO,0,1,W,FAULT,compulsory,0,,0,1 - -,free frame 0 available
+FIFO,1,2,R,FAULT,compulsory,1,,0,1 2 -,free frame 1 available
+FIFO,2,3,W,FAULT,compulsory,2,,0,1 2 3,free frame 2 available
+FIFO,3,4,R,FAULT,compulsory,0,1,1,4 2 3,evict page 1 from frame 0 (dirty -> write back): oldest resident page (loaded at t=0)
+FIFO,4,1,R,FAULT,capacity,1,2,0,4 1 3,evict page 2 from frame 1: oldest resident page (loaded at t=1)
+FIFO,5,2,W,FAULT,capacity,2,3,1,4 1 2,evict page 3 from frame 2 (dirty -> write back): oldest resident page (loaded at t=2)
+FIFO,6,5,R,FAULT,compulsory,0,4,0,5 1 2,evict page 4 from frame 0: oldest resident page (loaded at t=3)
+FIFO,7,1,R,HIT,,1,,0,5 1 2,page 1 already resident in frame 1
+FIFO,8,2,R,HIT,,2,,0,5 1 2,page 2 already resident in frame 2
+FIFO,9,3,W,FAULT,capacity,1,1,0,5 3 2,evict page 1 from frame 1: oldest resident page (loaded at t=4)
+FIFO,10,4,R,FAULT,capacity,2,2,1,5 3 4,evict page 2 from frame 2 (dirty -> write back): oldest resident page (loaded at t=5)
+FIFO,11,5,W,HIT,,0,,0,5 3 4,page 5 already resident in frame 0
+FIFO,12,1,W,FAULT,capacity,0,5,1,1 3 4,evict page 5 from frame 0 (dirty -> write back): oldest resident page (loaded at t=6)
+FIFO,13,3,R,HIT,,1,,0,1 3 4,page 3 already resident in frame 1
+FIFO,14,2,R,FAULT,capacity,1,3,1,1 2 4,evict page 3 from frame 1 (dirty -> write back): oldest resident page (loaded at t=9)
+FIFO,15,4,W,HIT,,2,,0,1 2 4,page 4 already resident in frame 2
+FIFO,16,5,R,FAULT,capacity,2,4,1,1 2 5,evict page 4 from frame 2 (dirty -> write back): oldest resident page (loaded at t=10)
+FIFO,17,1,R,HIT,,0,,0,1 2 5,page 1 already resident in frame 0
+FIFO,18,6,R,FAULT,compulsory,0,1,1,6 2 5,evict page 1 from frame 0 (dirty -> write back): oldest resident page (loaded at t=12)
+FIFO,19,2,W,HIT,,1,,0,6 2 5,page 2 already resident in frame 1
+FIFO,20,7,R,FAULT,compulsory,1,2,1,6 7 5,evict page 2 from frame 1 (dirty -> write back): oldest resident page (loaded at t=14)
+FIFO,21,1,R,FAULT,capacity,2,5,0,6 7 1,evict page 5 from frame 2: oldest resident page (loaded at t=16)
+FIFO,22,3,R,FAULT,capacity,0,6,0,3 7 1,evict page 6 from frame 0: oldest resident page (loaded at t=18)
+FIFO,23,6,W,FAULT,capacity,1,7,0,3 6 1,evict page 7 from frame 1: oldest resident page (loaded at t=20)
+FIFO,24,2,R,FAULT,capacity,2,1,0,3 6 2,evict page 1 from frame 2: oldest resident page (loaded at t=21)
+LRU,0,1,W,FAULT,compulsory,0,,0,1 - -,free frame 0 available
+LRU,1,2,R,FAULT,compulsory,1,,0,1 2 -,free frame 1 available
+LRU,2,3,W,FAULT,compulsory,2,,0,1 2 3,free frame 2 available
+LRU,3,4,R,FAULT,compulsory,0,1,1,4 2 3,evict page 1 from frame 0 (dirty -> write back): least recently used (last referenced at t=0)
+LRU,4,1,R,FAULT,capacity,1,2,0,4 1 3,evict page 2 from frame 1: least recently used (last referenced at t=1)
+LRU,5,2,W,FAULT,capacity,2,3,1,4 1 2,evict page 3 from frame 2 (dirty -> write back): least recently used (last referenced at t=2)
+LRU,6,5,R,FAULT,compulsory,0,4,0,5 1 2,evict page 4 from frame 0: least recently used (last referenced at t=3)
+LRU,7,1,R,HIT,,1,,0,5 1 2,page 1 already resident in frame 1
+LRU,8,2,R,HIT,,2,,0,5 1 2,page 2 already resident in frame 2
+LRU,9,3,W,FAULT,capacity,0,5,0,3 1 2,evict page 5 from frame 0: least recently used (last referenced at t=6)
+LRU,10,4,R,FAULT,capacity,1,1,0,3 4 2,evict page 1 from frame 1: least recently used (last referenced at t=7)
+LRU,11,5,W,FAULT,capacity,2,2,1,3 4 5,evict page 2 from frame 2 (dirty -> write back): least recently used (last referenced at t=8)
+LRU,12,1,W,FAULT,capacity,0,3,1,1 4 5,evict page 3 from frame 0 (dirty -> write back): least recently used (last referenced at t=9)
+LRU,13,3,R,FAULT,capacity,1,4,0,1 3 5,evict page 4 from frame 1: least recently used (last referenced at t=10)
+LRU,14,2,R,FAULT,capacity,2,5,1,1 3 2,evict page 5 from frame 2 (dirty -> write back): least recently used (last referenced at t=11)
+LRU,15,4,W,FAULT,capacity,0,1,1,4 3 2,evict page 1 from frame 0 (dirty -> write back): least recently used (last referenced at t=12)
+LRU,16,5,R,FAULT,capacity,1,3,0,4 5 2,evict page 3 from frame 1: least recently used (last referenced at t=13)
+LRU,17,1,R,FAULT,capacity,2,2,0,4 5 1,evict page 2 from frame 2: least recently used (last referenced at t=14)
+LRU,18,6,R,FAULT,compulsory,0,4,1,6 5 1,evict page 4 from frame 0 (dirty -> write back): least recently used (last referenced at t=15)
+LRU,19,2,W,FAULT,capacity,1,5,0,6 2 1,evict page 5 from frame 1: least recently used (last referenced at t=16)
+LRU,20,7,R,FAULT,compulsory,2,1,0,6 2 7,evict page 1 from frame 2: least recently used (last referenced at t=17)
+LRU,21,1,R,FAULT,capacity,0,6,0,1 2 7,evict page 6 from frame 0: least recently used (last referenced at t=18)
+LRU,22,3,R,FAULT,capacity,1,2,1,1 3 7,evict page 2 from frame 1 (dirty -> write back): least recently used (last referenced at t=19)
+LRU,23,6,W,FAULT,capacity,2,7,0,1 3 6,evict page 7 from frame 2: least recently used (last referenced at t=20)
+LRU,24,2,R,FAULT,capacity,0,1,0,2 3 6,evict page 1 from frame 0: least recently used (last referenced at t=21)
+OPT,0,1,W,FAULT,compulsory,0,,0,1 - -,free frame 0 available
+OPT,1,2,R,FAULT,compulsory,1,,0,1 2 -,free frame 1 available
+OPT,2,3,W,FAULT,compulsory,2,,0,1 2 3,free frame 2 available
+OPT,3,4,R,FAULT,compulsory,2,3,1,1 2 4,evict page 3 from frame 2 (dirty -> write back): next use farthest in the future (t=9)
+OPT,4,1,R,HIT,,0,,0,1 2 4,page 1 already resident in frame 0
+OPT,5,2,W,HIT,,1,,0,1 2 4,page 2 already resident in frame 1
+OPT,6,5,R,FAULT,compulsory,2,4,0,1 2 5,evict page 4 from frame 2: next use farthest in the future (t=10)
+OPT,7,1,R,HIT,,0,,0,1 2 5,page 1 already resident in frame 0
+OPT,8,2,R,HIT,,1,,0,1 2 5,page 2 already resident in frame 1
+OPT,9,3,W,FAULT,capacity,1,2,1,1 3 5,evict page 2 from frame 1 (dirty -> write back): next use farthest in the future (t=14)
+OPT,10,4,R,FAULT,capacity,1,3,1,1 4 5,evict page 3 from frame 1 (dirty -> write back): next use farthest in the future (t=13)
+OPT,11,5,W,HIT,,2,,0,1 4 5,page 5 already resident in frame 2
+OPT,12,1,W,HIT,,0,,0,1 4 5,page 1 already resident in frame 0
+OPT,13,3,R,FAULT,capacity,0,1,1,3 4 5,evict page 1 from frame 0 (dirty -> write back): next use farthest in the future (t=17)
+OPT,14,2,R,FAULT,capacity,0,3,0,2 4 5,evict page 3 from frame 0: next use farthest in the future (t=22)
+OPT,15,4,W,HIT,,1,,0,2 4 5,page 4 already resident in frame 1
+OPT,16,5,R,HIT,,2,,0,2 4 5,page 5 already resident in frame 2
+OPT,17,1,R,FAULT,capacity,1,4,1,2 1 5,evict page 4 from frame 1 (dirty -> write back): never referenced again
+OPT,18,6,R,FAULT,compulsory,2,5,1,2 1 6,evict page 5 from frame 2 (dirty -> write back): never referenced again
+OPT,19,2,W,HIT,,0,,0,2 1 6,page 2 already resident in frame 0
+OPT,20,7,R,FAULT,compulsory,0,2,1,7 1 6,evict page 2 from frame 0 (dirty -> write back): next use farthest in the future (t=24)
+OPT,21,1,R,HIT,,1,,0,7 1 6,page 1 already resident in frame 1
+OPT,22,3,R,FAULT,capacity,0,7,0,3 1 6,evict page 7 from frame 0: never referenced again
+OPT,23,6,W,HIT,,2,,0,3 1 6,page 6 already resident in frame 2
+OPT,24,2,R,FAULT,capacity,1,1,0,3 2 6,evict page 1 from frame 1: never referenced again
+CLOCK,0,1,W,FAULT,compulsory,0,,0,1 - -,free frame 0 available
+CLOCK,1,2,R,FAULT,compulsory,1,,0,1 2 -,free frame 1 available
+CLOCK,2,3,W,FAULT,compulsory,2,,0,1 2 3,free frame 2 available
+CLOCK,3,4,R,FAULT,compulsory,0,1,1,4 2 3,"evict page 1 from frame 0 (dirty -> write back): clock hand found R=0 after giving a second chance to {1,2,3}"
+CLOCK,4,1,R,FAULT,capacity,1,2,0,4 1 3,evict page 2 from frame 1: clock hand found R=0
+CLOCK,5,2,W,FAULT,capacity,2,3,1,4 1 2,evict page 3 from frame 2 (dirty -> write back): clock hand found R=0
+CLOCK,6,5,R,FAULT,compulsory,0,4,0,5 1 2,"evict page 4 from frame 0: clock hand found R=0 after giving a second chance to {4,1,2}"
+CLOCK,7,1,R,HIT,,1,,0,5 1 2,page 1 already resident in frame 1
+CLOCK,8,2,R,HIT,,2,,0,5 1 2,page 2 already resident in frame 2
+CLOCK,9,3,W,FAULT,capacity,1,1,0,5 3 2,"evict page 1 from frame 1: clock hand found R=0 after giving a second chance to {1,2,5}"
+CLOCK,10,4,R,FAULT,capacity,2,2,1,5 3 4,evict page 2 from frame 2 (dirty -> write back): clock hand found R=0
+CLOCK,11,5,W,HIT,,0,,0,5 3 4,page 5 already resident in frame 0
+CLOCK,12,1,W,FAULT,capacity,0,5,1,1 3 4,"evict page 5 from frame 0 (dirty -> write back): clock hand found R=0 after giving a second chance to {5,3,4}"
+CLOCK,13,3,R,HIT,,1,,0,1 3 4,page 3 already resident in frame 1
+CLOCK,14,2,R,FAULT,capacity,2,4,0,1 3 2,evict page 4 from frame 2: clock hand found R=0 after giving a second chance to {3}
+CLOCK,15,4,W,FAULT,capacity,1,3,1,1 4 2,evict page 3 from frame 1 (dirty -> write back): clock hand found R=0 after giving a second chance to {1}
+CLOCK,16,5,R,FAULT,capacity,0,1,1,5 4 2,evict page 1 from frame 0 (dirty -> write back): clock hand found R=0 after giving a second chance to {2}
+CLOCK,17,1,R,FAULT,capacity,2,2,0,5 4 1,evict page 2 from frame 2: clock hand found R=0 after giving a second chance to {4}
+CLOCK,18,6,R,FAULT,compulsory,1,4,1,5 6 1,evict page 4 from frame 1 (dirty -> write back): clock hand found R=0 after giving a second chance to {5}
+CLOCK,19,2,W,FAULT,capacity,0,5,0,2 6 1,evict page 5 from frame 0: clock hand found R=0 after giving a second chance to {1}
+CLOCK,20,7,R,FAULT,compulsory,2,1,0,2 6 7,evict page 1 from frame 2: clock hand found R=0 after giving a second chance to {6}
+CLOCK,21,1,R,FAULT,capacity,1,6,0,2 1 7,evict page 6 from frame 1: clock hand found R=0 after giving a second chance to {2}
+CLOCK,22,3,R,FAULT,capacity,0,2,1,3 1 7,evict page 2 from frame 0 (dirty -> write back): clock hand found R=0 after giving a second chance to {7}
+CLOCK,23,6,W,FAULT,capacity,2,7,0,3 1 6,evict page 7 from frame 2: clock hand found R=0 after giving a second chance to {1}
+CLOCK,24,2,R,FAULT,capacity,1,1,0,3 2 6,evict page 1 from frame 1: clock hand found R=0 after giving a second chance to {3}
+ESC,0,1,W,FAULT,compulsory,0,,0,1 - -,free frame 0 available
+ESC,1,2,R,FAULT,compulsory,1,,0,1 2 -,free frame 1 available
+ESC,2,3,W,FAULT,compulsory,2,,0,1 2 3,free frame 2 available
+ESC,3,4,R,FAULT,compulsory,1,2,0,1 4 3,"evict page 2 from frame 1: class (R=0,M=0): not recently used and clean"
+ESC,4,1,R,HIT,,0,,0,1 4 3,page 1 already resident in frame 0
+ESC,5,2,W,FAULT,capacity,2,3,1,1 4 2,"evict page 3 from frame 2 (dirty -> write back): class (R=0,M=1): not recently used but dirty"
+ESC,6,5,R,FAULT,compulsory,1,4,0,1 5 2,"evict page 4 from frame 1: class (R=0,M=0): not recently used and clean"
+ESC,7,1,R,HIT,,0,,0,1 5 2,page 1 already resident in frame 0
+ESC,8,2,R,HIT,,2,,0,1 5 2,page 2 already resident in frame 2
+ESC,9,3,W,FAULT,capacity,1,5,0,1 3 2,"evict page 5 from frame 1: class (R=0,M=0): not recently used and clean"
+ESC,10,4,R,FAULT,capacity,2,2,1,1 3 4,"evict page 2 from frame 2 (dirty -> write back): class (R=0,M=1): not recently used but dirty"
+ESC,11,5,W,FAULT,capacity,0,1,1,5 3 4,"evict page 1 from frame 0 (dirty -> write back): class (R=0,M=1): not recently used but dirty"
+ESC,12,1,W,FAULT,capacity,2,4,0,5 3 1,"evict page 4 from frame 2: class (R=0,M=0): not recently used and clean"
+ESC,13,3,R,HIT,,1,,0,5 3 1,page 3 already resident in frame 1
+ESC,14,2,R,FAULT,capacity,0,5,1,2 3 1,"evict page 5 from frame 0 (dirty -> write back): class (R=0,M=1): not recently used but dirty"
+ESC,15,4,W,FAULT,capacity,0,2,0,4 3 1,"evict page 2 from frame 0: class (R=0,M=0): not recently used and clean"
+ESC,16,5,R,FAULT,capacity,1,3,1,4 5 1,"evict page 3 from frame 1 (dirty -> write back): class (R=0,M=1): not recently used but dirty"
+ESC,17,1,R,HIT,,2,,0,4 5 1,page 1 already resident in frame 2
+ESC,18,6,R,FAULT,compulsory,1,5,0,4 6 1,"evict page 5 from frame 1: class (R=0,M=0): not recently used and clean"
+ESC,19,2,W,FAULT,capacity,2,1,1,4 6 2,"evict page 1 from frame 2 (dirty -> write back): class (R=0,M=1): not recently used but dirty"
+ESC,20,7,R,FAULT,compulsory,0,4,1,7 6 2,"evict page 4 from frame 0 (dirty -> write back): class (R=0,M=1): not recently used but dirty"
+ESC,21,1,R,FAULT,capacity,1,6,0,7 1 2,"evict page 6 from frame 1: class (R=0,M=0): not recently used and clean"
+ESC,22,3,R,FAULT,capacity,0,7,0,3 1 2,"evict page 7 from frame 0: class (R=0,M=0): not recently used and clean"
+ESC,23,6,W,FAULT,capacity,2,2,1,3 1 6,"evict page 2 from frame 2 (dirty -> write back): class (R=0,M=1): not recently used but dirty"
+ESC,24,2,R,FAULT,capacity,1,1,0,3 2 6,"evict page 1 from frame 1: class (R=0,M=0): not recently used and clean"
+NRU,0,1,W,FAULT,compulsory,0,,0,1 - -,free frame 0 available
+NRU,1,2,R,FAULT,compulsory,1,,0,1 2 -,free frame 1 available
+NRU,2,3,W,FAULT,compulsory,2,,0,1 2 3,free frame 2 available
+NRU,3,4,R,FAULT,compulsory,1,2,0,1 4 3,"evict page 2 from frame 1: lowest NRU class 2 (R=1,M=0), oldest among 1 candidate(s)"
+NRU,4,1,R,HIT,,0,,0,1 4 3,page 1 already resident in frame 0
+NRU,5,2,W,FAULT,capacity,1,4,0,1 2 3,"evict page 4 from frame 1: lowest NRU class 2 (R=1,M=0), oldest among 1 candidate(s)"
+NRU,6,5,R,FAULT,compulsory,0,1,1,5 2 3,"evict page 1 from frame 0 (dirty -> write back): lowest NRU class 3 (R=1,M=1), oldest among 3 candidate(s)"
+NRU,7,1,R,FAULT,capacity,0,5,0,1 2 3,"evict page 5 from frame 0: lowest NRU class 2 (R=1,M=0), oldest among 1 candidate(s)"
+NRU,8,2,R,HIT,,1,,0,1 2 3,page 2 already resident in frame 1
+NRU,9,3,W,HIT,,2,,0,1 2 3,page 3 already resident in frame 2
+NRU,10,4,R,FAULT,capacity,0,1,0,4 2 3,"evict page 1 from frame 0: lowest NRU class 0 (R=0,M=0), oldest among 1 candidate(s)"
+NRU,11,5,W,FAULT,capacity,0,4,0,5 2 3,"evict page 4 from frame 0: lowest NRU class 2 (R=1,M=0), oldest among 1 candidate(s)"
+NRU,12,1,W,FAULT,capacity,2,3,1,5 2 1,"evict page 3 from frame 2 (dirty -> write back): lowest NRU class 3 (R=1,M=1), oldest among 3 candidate(s)"
+NRU,13,3,R,FAULT,capacity,1,2,1,5 3 1,"evict page 2 from frame 1 (dirty -> write back): lowest NRU class 3 (R=1,M=1), oldest among 3 candidate(s)"
+NRU,14,2,R,FAULT,capacity,1,3,0,5 2 1,"evict page 3 from frame 1: lowest NRU class 2 (R=1,M=0), oldest among 1 candidate(s)"
+NRU,15,4,W,FAULT,capacity,1,2,0,5 4 1,"evict page 2 from frame 1: lowest NRU class 2 (R=1,M=0), oldest among 1 candidate(s)"
+NRU,16,5,R,HIT,,0,,0,5 4 1,page 5 already resident in frame 0
+NRU,17,1,R,HIT,,2,,0,5 4 1,page 1 already resident in frame 2
+NRU,18,6,R,FAULT,compulsory,1,4,1,5 6 1,"evict page 4 from frame 1 (dirty -> write back): lowest NRU class 1 (R=0,M=1), oldest among 1 candidate(s)"
+NRU,19,2,W,FAULT,capacity,1,6,0,5 2 1,"evict page 6 from frame 1: lowest NRU class 2 (R=1,M=0), oldest among 1 candidate(s)"
+NRU,20,7,R,FAULT,compulsory,0,5,1,7 2 1,"evict page 5 from frame 0 (dirty -> write back): lowest NRU class 3 (R=1,M=1), oldest among 3 candidate(s)"
+NRU,21,1,R,HIT,,2,,0,7 2 1,page 1 already resident in frame 2
+NRU,22,3,R,FAULT,capacity,0,7,0,3 2 1,"evict page 7 from frame 0: lowest NRU class 2 (R=1,M=0), oldest among 1 candidate(s)"
+NRU,23,6,W,FAULT,capacity,0,3,0,6 2 1,"evict page 3 from frame 0: lowest NRU class 2 (R=1,M=0), oldest among 1 candidate(s)"
+NRU,24,2,R,HIT,,1,,0,6 2 1,page 2 already resident in frame 1
+AGING,0,1,W,FAULT,compulsory,0,,0,1 - -,free frame 0 available
+AGING,1,2,R,FAULT,compulsory,1,,0,1 2 -,free frame 1 available
+AGING,2,3,W,FAULT,compulsory,2,,0,1 2 3,free frame 2 available
+AGING,3,4,R,FAULT,compulsory,0,1,1,4 2 3,evict page 1 from frame 0 (dirty -> write back): smallest aging counter 00100000
+AGING,4,1,R,FAULT,capacity,1,2,0,4 1 3,evict page 2 from frame 1: smallest aging counter 00100000
+AGING,5,2,W,FAULT,capacity,2,3,1,4 1 2,evict page 3 from frame 2 (dirty -> write back): smallest aging counter 00100000
+AGING,6,5,R,FAULT,compulsory,0,4,0,5 1 2,evict page 4 from frame 0: smallest aging counter 00100000
+AGING,7,1,R,HIT,,1,,0,5 1 2,page 1 already resident in frame 1
+AGING,8,2,R,HIT,,2,,0,5 1 2,page 2 already resident in frame 2
+AGING,9,3,W,FAULT,capacity,0,5,0,3 1 2,evict page 5 from frame 0: smallest aging counter 00100000
+AGING,10,4,R,FAULT,capacity,1,1,0,3 4 2,evict page 1 from frame 1: smallest aging counter 00100100
+AGING,11,5,W,FAULT,capacity,2,2,1,3 4 5,evict page 2 from frame 2 (dirty -> write back): smallest aging counter 00100100
+AGING,12,1,W,FAULT,capacity,0,3,1,1 4 5,evict page 3 from frame 0 (dirty -> write back): smallest aging counter 00100000
+AGING,13,3,R,FAULT,capacity,1,4,0,1 3 5,evict page 4 from frame 1: smallest aging counter 00100000
+AGING,14,2,R,FAULT,capacity,2,5,1,1 3 2,evict page 5 from frame 2 (dirty -> write back): smallest aging counter 00100000
+AGING,15,4,W,FAULT,capacity,0,1,1,4 3 2,evict page 1 from frame 0 (dirty -> write back): smallest aging counter 00100000
+AGING,16,5,R,FAULT,capacity,1,3,0,4 5 2,evict page 3 from frame 1: smallest aging counter 00100000
+AGING,17,1,R,FAULT,capacity,2,2,0,4 5 1,evict page 2 from frame 2: smallest aging counter 00100000
+AGING,18,6,R,FAULT,compulsory,0,4,1,6 5 1,evict page 4 from frame 0 (dirty -> write back): smallest aging counter 00100000
+AGING,19,2,W,FAULT,capacity,1,5,0,6 2 1,evict page 5 from frame 1: smallest aging counter 00100000
+AGING,20,7,R,FAULT,compulsory,2,1,0,6 2 7,evict page 1 from frame 2: smallest aging counter 00100000
+AGING,21,1,R,FAULT,capacity,0,6,0,1 2 7,evict page 6 from frame 0: smallest aging counter 00100000
+AGING,22,3,R,FAULT,capacity,1,2,1,1 3 7,evict page 2 from frame 1 (dirty -> write back): smallest aging counter 00100000
+AGING,23,6,W,FAULT,capacity,2,7,0,1 3 6,evict page 7 from frame 2: smallest aging counter 00100000
+AGING,24,2,R,FAULT,capacity,0,1,0,2 3 6,evict page 1 from frame 0: smallest aging counter 00100000
+LFU,0,1,W,FAULT,compulsory,0,,0,1 - -,free frame 0 available
+LFU,1,2,R,FAULT,compulsory,1,,0,1 2 -,free frame 1 available
+LFU,2,3,W,FAULT,compulsory,2,,0,1 2 3,free frame 2 available
+LFU,3,4,R,FAULT,compulsory,0,1,1,4 2 3,evict page 1 from frame 0 (dirty -> write back): lowest use count (1)
+LFU,4,1,R,FAULT,capacity,1,2,0,4 1 3,evict page 2 from frame 1: lowest use count (1)
+LFU,5,2,W,FAULT,capacity,2,3,1,4 1 2,evict page 3 from frame 2 (dirty -> write back): lowest use count (1)
+LFU,6,5,R,FAULT,compulsory,0,4,0,5 1 2,evict page 4 from frame 0: lowest use count (1)
+LFU,7,1,R,HIT,,1,,0,5 1 2,page 1 already resident in frame 1
+LFU,8,2,R,HIT,,2,,0,5 1 2,page 2 already resident in frame 2
+LFU,9,3,W,FAULT,capacity,0,5,0,3 1 2,evict page 5 from frame 0: lowest use count (1)
+LFU,10,4,R,FAULT,capacity,0,3,1,4 1 2,evict page 3 from frame 0 (dirty -> write back): lowest use count (1)
+LFU,11,5,W,FAULT,capacity,0,4,0,5 1 2,evict page 4 from frame 0: lowest use count (1)
+LFU,12,1,W,HIT,,1,,0,5 1 2,page 1 already resident in frame 1
+LFU,13,3,R,FAULT,capacity,0,5,1,3 1 2,evict page 5 from frame 0 (dirty -> write back): lowest use count (1)
+LFU,14,2,R,HIT,,2,,0,3 1 2,page 2 already resident in frame 2
+LFU,15,4,W,FAULT,capacity,0,3,0,4 1 2,evict page 3 from frame 0: lowest use count (1)
+LFU,16,5,R,FAULT,capacity,0,4,1,5 1 2,evict page 4 from frame 0 (dirty -> write back): lowest use count (1)
+LFU,17,1,R,HIT,,1,,0,5 1 2,page 1 already resident in frame 1
+LFU,18,6,R,FAULT,compulsory,0,5,0,6 1 2,evict page 5 from frame 0: lowest use count (1)
+LFU,19,2,W,HIT,,2,,0,6 1 2,page 2 already resident in frame 2
+LFU,20,7,R,FAULT,compulsory,0,6,0,7 1 2,evict page 6 from frame 0: lowest use count (1)
+LFU,21,1,R,HIT,,1,,0,7 1 2,page 1 already resident in frame 1
+LFU,22,3,R,FAULT,capacity,0,7,0,3 1 2,evict page 7 from frame 0: lowest use count (1)
+LFU,23,6,W,FAULT,capacity,0,3,0,6 1 2,evict page 3 from frame 0: lowest use count (1)
+LFU,24,2,R,HIT,,2,,0,6 1 2,page 2 already resident in frame 2
+MFU,0,1,W,FAULT,compulsory,0,,0,1 - -,free frame 0 available
+MFU,1,2,R,FAULT,compulsory,1,,0,1 2 -,free frame 1 available
+MFU,2,3,W,FAULT,compulsory,2,,0,1 2 3,free frame 2 available
+MFU,3,4,R,FAULT,compulsory,0,1,1,4 2 3,evict page 1 from frame 0 (dirty -> write back): highest use count (1)
+MFU,4,1,R,FAULT,capacity,1,2,0,4 1 3,evict page 2 from frame 1: highest use count (1)
+MFU,5,2,W,FAULT,capacity,2,3,1,4 1 2,evict page 3 from frame 2 (dirty -> write back): highest use count (1)
+MFU,6,5,R,FAULT,compulsory,0,4,0,5 1 2,evict page 4 from frame 0: highest use count (1)
+MFU,7,1,R,HIT,,1,,0,5 1 2,page 1 already resident in frame 1
+MFU,8,2,R,HIT,,2,,0,5 1 2,page 2 already resident in frame 2
+MFU,9,3,W,FAULT,capacity,1,1,0,5 3 2,evict page 1 from frame 1: highest use count (2)
+MFU,10,4,R,FAULT,capacity,2,2,1,5 3 4,evict page 2 from frame 2 (dirty -> write back): highest use count (2)
+MFU,11,5,W,HIT,,0,,0,5 3 4,page 5 already resident in frame 0
+MFU,12,1,W,FAULT,capacity,0,5,1,1 3 4,evict page 5 from frame 0 (dirty -> write back): highest use count (2)
+MFU,13,3,R,HIT,,1,,0,1 3 4,page 3 already resident in frame 1
+MFU,14,2,R,FAULT,capacity,1,3,1,1 2 4,evict page 3 from frame 1 (dirty -> write back): highest use count (2)
+MFU,15,4,W,HIT,,2,,0,1 2 4,page 4 already resident in frame 2
+MFU,16,5,R,FAULT,capacity,2,4,1,1 2 5,evict page 4 from frame 2 (dirty -> write back): highest use count (2)
+MFU,17,1,R,HIT,,0,,0,1 2 5,page 1 already resident in frame 0
+MFU,18,6,R,FAULT,compulsory,0,1,1,6 2 5,evict page 1 from frame 0 (dirty -> write back): highest use count (2)
+MFU,19,2,W,HIT,,1,,0,6 2 5,page 2 already resident in frame 1
+MFU,20,7,R,FAULT,compulsory,1,2,1,6 7 5,evict page 2 from frame 1 (dirty -> write back): highest use count (2)
+MFU,21,1,R,FAULT,capacity,2,5,0,6 7 1,evict page 5 from frame 2: highest use count (1)
+MFU,22,3,R,FAULT,capacity,0,6,0,3 7 1,evict page 6 from frame 0: highest use count (1)
+MFU,23,6,W,FAULT,capacity,1,7,0,3 6 1,evict page 7 from frame 1: highest use count (1)
+MFU,24,2,R,FAULT,capacity,2,1,0,3 6 2,evict page 1 from frame 2: highest use count (1)
+RANDOM,0,1,W,FAULT,compulsory,0,,0,1 - -,free frame 0 available
+RANDOM,1,2,R,FAULT,compulsory,1,,0,1 2 -,free frame 1 available
+RANDOM,2,3,W,FAULT,compulsory,2,,0,1 2 3,free frame 2 available
+RANDOM,3,4,R,FAULT,compulsory,1,2,0,1 4 3,evict page 2 from frame 1: chosen uniformly at random
+RANDOM,4,1,R,HIT,,0,,0,1 4 3,page 1 already resident in frame 0
+RANDOM,5,2,W,FAULT,capacity,2,3,1,1 4 2,evict page 3 from frame 2 (dirty -> write back): chosen uniformly at random
+RANDOM,6,5,R,FAULT,compulsory,2,2,1,1 4 5,evict page 2 from frame 2 (dirty -> write back): chosen uniformly at random
+RANDOM,7,1,R,HIT,,0,,0,1 4 5,page 1 already resident in frame 0
+RANDOM,8,2,R,FAULT,capacity,0,1,1,2 4 5,evict page 1 from frame 0 (dirty -> write back): chosen uniformly at random
+RANDOM,9,3,W,FAULT,capacity,2,5,0,2 4 3,evict page 5 from frame 2: chosen uniformly at random
+RANDOM,10,4,R,HIT,,1,,0,2 4 3,page 4 already resident in frame 1
+RANDOM,11,5,W,FAULT,capacity,2,3,1,2 4 5,evict page 3 from frame 2 (dirty -> write back): chosen uniformly at random
+RANDOM,12,1,W,FAULT,capacity,1,4,0,2 1 5,evict page 4 from frame 1: chosen uniformly at random
+RANDOM,13,3,R,FAULT,capacity,1,1,1,2 3 5,evict page 1 from frame 1 (dirty -> write back): chosen uniformly at random
+RANDOM,14,2,R,HIT,,0,,0,2 3 5,page 2 already resident in frame 0
+RANDOM,15,4,W,FAULT,capacity,0,2,0,4 3 5,evict page 2 from frame 0: chosen uniformly at random
+RANDOM,16,5,R,HIT,,2,,0,4 3 5,page 5 already resident in frame 2
+RANDOM,17,1,R,FAULT,capacity,1,3,0,4 1 5,evict page 3 from frame 1: chosen uniformly at random
+RANDOM,18,6,R,FAULT,compulsory,0,4,1,6 1 5,evict page 4 from frame 0 (dirty -> write back): chosen uniformly at random
+RANDOM,19,2,W,FAULT,capacity,0,6,0,2 1 5,evict page 6 from frame 0: chosen uniformly at random
+RANDOM,20,7,R,FAULT,compulsory,0,2,1,7 1 5,evict page 2 from frame 0 (dirty -> write back): chosen uniformly at random
+RANDOM,21,1,R,HIT,,1,,0,7 1 5,page 1 already resident in frame 1
+RANDOM,22,3,R,FAULT,capacity,1,1,0,7 3 5,evict page 1 from frame 1: chosen uniformly at random
+RANDOM,23,6,W,FAULT,capacity,2,5,1,7 3 6,evict page 5 from frame 2 (dirty -> write back): chosen uniformly at random
+RANDOM,24,2,R,FAULT,capacity,1,3,0,7 2 6,evict page 3 from frame 1: chosen uniformly at random
+ARC,0,1,W,FAULT,compulsory,0,,0,1 - -,free frame 0 available
+ARC,1,2,R,FAULT,compulsory,1,,0,1 2 -,free frame 1 available
+ARC,2,3,W,FAULT,compulsory,2,,0,1 2 3,free frame 2 available
+ARC,3,4,R,FAULT,compulsory,0,1,1,4 2 3,evict page 1 from frame 0 (dirty -> write back): T1 holds the whole cache: drop its LRU page without a ghost
+ARC,4,1,R,FAULT,capacity,1,2,0,4 1 3,evict page 2 from frame 1: T1 holds the whole cache: drop its LRU page without a ghost
+ARC,5,2,W,FAULT,capacity,2,3,1,4 1 2,evict page 3 from frame 2 (dirty -> write back): T1 holds the whole cache: drop its LRU page without a ghost
+ARC,6,5,R,FAULT,compulsory,0,4,0,5 1 2,evict page 4 from frame 0: T1 holds the whole cache: drop its LRU page without a ghost
+ARC,7,1,R,HIT,,1,,0,5 1 2,page 1 already resident in frame 1
+ARC,8,2,R,HIT,,2,,0,5 1 2,page 2 already resident in frame 2
+ARC,9,3,W,FAULT,capacity,0,5,0,3 1 2,"evict page 5 from frame 0: LRU of T1 (recency list, |T1|=1 vs target p=0)"
+ARC,10,4,R,FAULT,capacity,0,3,1,4 1 2,"evict page 3 from frame 0 (dirty -> write back): LRU of T1 (recency list, |T1|=1 vs target p=0)"
+ARC,11,5,W,FAULT,capacity,1,1,0,4 5 2,"evict page 1 from frame 1: ghost hit in B1, p grows to 1; LRU of T2 (frequency list, |T1|=1 within target p=1)"
+ARC,12,1,W,FAULT,capacity,0,4,0,1 5 2,"evict page 4 from frame 0: ghost hit in B2, p shrinks to 0; LRU of T1 (recency list, |T1|=1 vs target p=0)"
+ARC,13,3,R,FAULT,capacity,2,2,1,1 5 3,"evict page 2 from frame 2 (dirty -> write back): ghost hit in B1, p grows to 1; LRU of T2 (frequency list, |T1|=0 within target p=1)"
+ARC,14,2,R,FAULT,capacity,1,5,1,1 2 3,"evict page 5 from frame 1 (dirty -> write back): ghost hit in B2, p shrinks to 0; LRU of T2 (frequency list, |T1|=0 within target p=0)"
+ARC,15,4,W,FAULT,capacity,0,1,1,4 2 3,"evict page 1 from frame 0 (dirty -> write back): ghost hit in B1, p grows to 1; LRU of T2 (frequency list, |T1|=0 within target p=1)"
+ARC,16,5,R,FAULT,capacity,2,3,0,4 2 5,"evict page 3 from frame 2: ghost hit in B2, p shrinks to 0; LRU of T2 (frequency list, |T1|=0 within target p=0)"
+ARC,17,1,R,FAULT,capacity,1,2,0,4 1 5,"evict page 2 from frame 1: ghost hit in B2, p shrinks to 0; LRU of T2 (frequency list, |T1|=0 within target p=0)"
+ARC,18,6,R,FAULT,compulsory,0,4,1,6 1 5,"evict page 4 from frame 0 (dirty -> write back): LRU of T2 (frequency list, |T1|=0 within target p=0)"
+ARC,19,2,W,FAULT,capacity,0,6,0,2 1 5,"evict page 6 from frame 0: ghost hit in B2, p shrinks to 0; LRU of T1 (recency list, |T1|=1 vs target p=0)"
+ARC,20,7,R,FAULT,compulsory,2,5,0,2 1 7,"evict page 5 from frame 2: LRU of T2 (frequency list, |T1|=0 within target p=0)"
+ARC,21,1,R,HIT,,1,,0,2 1 7,page 1 already resident in frame 1
+ARC,22,3,R,FAULT,capacity,2,7,0,2 1 3,"evict page 7 from frame 2: LRU of T1 (recency list, |T1|=1 vs target p=0)"
+ARC,23,6,W,FAULT,capacity,0,2,1,6 1 3,"evict page 2 from frame 0 (dirty -> write back): ghost hit in B1, p grows to 1; LRU of T2 (frequency list, |T1|=1 within target p=1)"
+ARC,24,2,R,FAULT,capacity,2,3,0,6 1 2,"evict page 3 from frame 2: ghost hit in B2, p shrinks to 0; LRU of T1 (recency list, |T1|=1 vs target p=0)"

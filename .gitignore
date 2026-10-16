@@ -1,0 +1,7 @@
+build/
+build-cmake/
+*.o
+*.exe
+
+# stray local exports
+Desktop/
